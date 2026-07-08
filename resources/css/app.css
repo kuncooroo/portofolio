@@ -1,0 +1,139 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fafafa;
+  color: #111111;
+}
+
+.handwriting {
+  font-family: 'Caveat', cursive;
+}
+
+::selection {
+  background: #a00000;
+  color: white;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(#ececec 1px, transparent 1px),
+    linear-gradient(90deg, #ececec 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.hover-card {
+  transition: all .35s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .08);
+}
+
+.hover-image {
+  overflow: hidden;
+}
+
+.hover-image img {
+  transition: transform .5s ease;
+}
+
+.hover-image:hover img {
+  transform: scale(1.08);
+}
+
+.hover-button {
+  transition: all .3s ease;
+}
+
+.hover-button:hover {
+  transform: translateY(-3px);
+}
+
+.hover-icon {
+  transition: .3s;
+}
+
+.hover-card:hover .hover-icon {
+  transform: rotate(8deg) scale(1.15);
+}
+
+.loader-logo {
+  position: relative;
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: #111;
+  overflow: hidden;
+}
+
+.dark .loader-logo {
+  color: white;
+}
+
+.loader-logo span {
+  color: #a00000;
+}
+
+.loader-logo::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, .9),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -120%;
+  }
+  100% {
+    left: 140%;
+  }
+}
+
+@keyframes popup {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+*{
+    outline:1px solid red;
+}
