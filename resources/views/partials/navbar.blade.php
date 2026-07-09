@@ -5,7 +5,7 @@
                 Babbibub<span class="text-[#a00000]">.</span>
             </a>
             <ul class="hidden lg:flex gap-10 font-medium">
-                <li><a href="#about">About</a></li>
+                <li><a href="#about">About Me</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>

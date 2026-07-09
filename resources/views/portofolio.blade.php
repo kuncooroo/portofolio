@@ -7,6 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link
@@ -20,20 +21,16 @@
         <h1 class="loader-logo">
             Babbibub<span>.</span>
         </h1>
-        <p class="uppercase tracking-[0.35em] text-sm text-gray-500 mt-6">
-            Loading Portfolio
-        </p>
     </div>
     @include('partials.navbar')
+    @include('partials.social-sidebar')
     <main>
         <div class="grid-bg">
-            @include('sections.hero')
             @include('sections.about')
             @include('sections.skills')
             @include('sections.experience')
             @include('sections.projects')
             @include('sections.certificates')
-            {{-- @include('sections.contact') --}}
         </div>
     </main>
     @include('partials.footer')
