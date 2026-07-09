@@ -1,7 +1,5 @@
 <section id="experience" class="pt-24 relative overflow-hidden" data-aos="fade-up">
 
-    <!-- ==================== AREA ATAS & SAMPING LUAR ==================== -->
-    <!-- Kiri Atas Luar -->
     <div class="absolute left-[2%] top-20 w-72 h-80 hidden lg:block opacity-25 pointer-events-none select-none">
         <div
             class="absolute left-6 top-6 text-gray-300 text-7xl transform -rotate-12 hover:rotate-12 transition-transform duration-500">
@@ -19,7 +17,6 @@
         </svg>
     </div>
 
-    <!-- Kanan Atas Luar -->
     <div class="absolute right-[2%] top-20 w-72 h-80 hidden lg:block opacity-25 pointer-events-none select-none">
         <div
             class="absolute right-8 top-8 text-gray-300 text-7xl transform rotate-12 hover:-rotate-12 transition-transform duration-500">
@@ -37,9 +34,6 @@
         </svg>
     </div>
 
-
-    <!-- ==================== AREA TENGAH (Sela-sela Pinggir Card) ==================== -->
-    <!-- Tengah - Sisi Kiri Dalam -->
     <div class="absolute left-[19%] top-[35%] w-48 h-48 hidden xl:block opacity-30 pointer-events-none select-none z-0">
         <div class="absolute left-0 top-0 text-gray-300 text-8xl transform rotate-12">
             <i class="fas fa-minus"></i>
@@ -52,7 +46,6 @@
         </div>
     </div>
 
-    <!-- Tengah - Sisi Kanan Dalam -->
     <div
         class="absolute right-[19%] top-[40%] w-48 h-48 hidden xl:block opacity-30 pointer-events-none select-none z-0">
         <div class="absolute right-0 top-0 text-gray-300 text-8xl transform rotate-45">
@@ -66,9 +59,6 @@
         </div>
     </div>
 
-
-    <!-- ==================== AREA BAWAH KOSONG ==================== -->
-    <!-- Kiri Bawah -->
     <div class="absolute left-[8%] bottom-12 w-72 h-48 hidden lg:block opacity-25 pointer-events-none select-none z-0">
         <div class="absolute left-4 bottom-12 text-gray-300 text-8xl transform -rotate-12">
             <span class="font-serif font-light text-gray-300 text-7xl">∫</span>
@@ -81,7 +71,6 @@
         </div>
     </div>
 
-    <!-- Kanan Bawah -->
     <div class="absolute right-[8%] bottom-12 w-72 h-48 hidden lg:block opacity-25 pointer-events-none select-none z-0">
         <div class="absolute right-4 bottom-16 text-gray-300 text-7xl transform rotate-12">
             <span class="font-sans font-semibold text-gray-300 text-7xl">∑</span>
@@ -97,8 +86,6 @@
         </div>
     </div>
 
-
-    <!-- Ornamen pola bawaan -->
     <div class="absolute left-8 top-[50%] text-gray-150 text-5xl hidden xl:block opacity-10">
         ::::<br>::::<br>::::
     </div>
@@ -130,13 +117,13 @@
                     'year' => '2025',
                     'title' => 'PROVOKS UB',
                     'subtitle' => 'Staff Sekertaris',
-                    'image' => 'images/experience/Sekertaris.jpg',
+                    'image' => 'experience/Provoks.jpg',
                 ],
                 [
                     'year' => '2024',
                     'title' => 'KOMAKU',
                     'subtitle' => 'Staff Infokom',
-                    'image' => 'images/experience/KOMAKU.jpg',
+                    'image' => 'experience/KOMAKU.jpeg',
                 ],
                 [
                     'year' => '2024',
@@ -148,19 +135,19 @@
                     'year' => '2025',
                     'title' => 'Olivia X UB',
                     'subtitle' => 'Participant',
-                    'image' => 'images/experience/Olivia X UB.jpg',
+                    'image' => 'experience/Olivia X UB.jpg',
                 ],
                 [
                     'year' => '2026',
                     'title' => 'Olivia XI Unesa',
                     'subtitle' => 'Participant',
-                    'image' => 'images/experience/Olivia XI Unesa.jpg',
+                    'image' => 'experience/Olivia XI Unesa.jpeg',
                 ],
                 [
                     'year' => '2026',
                     'title' => 'PKM',
                     'subtitle' => 'Participant',
-                    'image' => 'images/experience/PKM.jpg',
+                    'image' => 'experience/PKM.jpeg',
                 ],
             ];
         @endphp

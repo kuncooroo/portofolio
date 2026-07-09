@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +15,8 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Caveat:wght@700&display=swap"
         rel="stylesheet">
 </head>
-<body
-    class="bg-[#fafafa] text-[#111] dark:bg-[#0f0f0f] dark:text-white overflow-x-hidden transition-colors duration-500">
+
+<body class="bg-[#fafafa] text-[#111] overflow-x-hidden transition-colors duration-500">
     <div id="loader"
         class="fixed inset-0 bg-white dark:bg-[#0f0f0f] z-9999 flex flex-col items-center justify-center transition-opacity duration-700">
         <h1 class="loader-logo">
@@ -47,22 +48,6 @@
             }, 1800);
         });
     </script>
-    <script>
-        const html = document.documentElement;
-        const toggle = document.getElementById("theme-toggle");
-        if (localStorage.getItem("theme") === "dark") {
-            html.classList.add("dark");
-        }
-        if (toggle) {
-            toggle.addEventListener("click", () => {
-                html.classList.toggle("dark");
-                if (html.classList.contains("dark")) {
-                    localStorage.setItem("theme", "dark");
-                } else {
-                    localStorage.setItem("theme", "light");
-                }
-            });
-        }
-    </script>
 </body>
+
 </html>

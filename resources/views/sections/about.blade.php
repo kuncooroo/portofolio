@@ -47,9 +47,11 @@
                 <h2 class="handwriting text-5xl text-[#a00000] text-center mt-2">
                     Muhammad Habib Masyhur
                 </h2>
-                <p class="uppercase tracking-[0.4em]  text-center text-sm text-gray-500 mt-2">
+                <p class="uppercase tracking-[0.4em] text-center text-sm text-gray-500 mt-2">
                     Mahasiswa Teknologi Informasi
-                    <span>Universitas Brawijaya</span>
+                </p>
+                <p class="uppercase tracking-[0.4em] text-center text-sm text-gray-500">
+                    Universitas Brawijaya
                 </p>
             </div>
 
