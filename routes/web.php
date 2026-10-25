@@ -7,4 +7,3 @@ Route::get('/', function () {
     return view('portofolio');
 });
 
-// Route::get('/', [PortfolioController::class, 'index']);

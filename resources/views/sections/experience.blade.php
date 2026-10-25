@@ -129,7 +129,7 @@
                     'year' => '2024',
                     'title' => 'KMNU',
                     'subtitle' => 'Staff Media & Relation',
-                    'image' => 'images/experience/KMNU.jpg',
+                    'image' => 'experience/KMNU.jpeg',
                 ],
                 [
                     'year' => '2025',
