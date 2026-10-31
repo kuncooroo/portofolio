@@ -112,46 +112,35 @@
             </div>
         </div>
 
-        @php
-            $certificates = [
-                [
-                    'image' => 'certificates/Sololearn.jpg',
-                    'issuer' => 'Sololearn',
-                    'title' => 'Introduction to Java',
-                    'desc' => 'Successfully completed Java.',
-                    'year' => '2024',
-                ],
-                [
-                    'image' => 'certificates/BitDegree.jpg',
-                    'issuer' => 'BitDegree',
-                    'title' => 'Interactive Coding Course for Beginners: Learn CSS & HTML',
-                    'desc' => 'Successfully completed CSS & HTML.',
-                    'year' => '2023',
-                ],
-            ];
-        @endphp
-
         <div class="relative">
             <div class="flex flex-wrap justify-center gap-6">
                 @foreach ($certificates as $certificate)
                     <div class="group" data-aos="zoom-in">
-                        <div class="w-56 transition duration-500 hover:-translate-y-3">
-                            <div class="relative overflow-hidden rounded-2xl shadow-lg">
-                                <div
-                                    class="absolute left-3 top-3 z-10 rounded-full bg-[#a00000] px-3 py-1 text-xs font-semibold text-white">
-                                    {{ $certificate['year'] }}
+                        <div class="flip-card w-56">
+                            <div class="flip-inner">
+                                <div class="flip-face">
+                                    <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                                        <div class="absolute left-3 top-3 z-10 rounded-full bg-[#a00000] px-3 py-1 text-xs font-semibold text-white">
+                                            {{ $certificate->year }}
+                                        </div>
+                                        @if ($certificate->imageUrl())
+                                            <img src="{{ $certificate->imageUrl() }}" alt="{{ $certificate->title }}" class="h-40 w-full object-cover" loading="lazy" decoding="async">
+                                        @else
+                                            <div class="flex h-40 w-full items-center justify-center bg-gray-100 text-sm text-gray-400">No image</div>
+                                        @endif
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        <h3 class="handwriting text-3xl leading-none text-[#a00000]">{{ $certificate->title }}</h3>
+                                        <p class="mt-2 text-[10px] uppercase tracking-[0.25em] text-gray-500">{{ $certificate->issuer }}</p>
+                                    </div>
                                 </div>
-                                <img src="{{ asset($certificate['image']) }}" alt="{{ $certificate['title'] }}"
-                                    class="h-40 w-full object-cover transition duration-700 group-hover:scale-110">
-                            </div>
-
-                            <div class="mt-4 text-center">
-                                <h3 class="handwriting text-3xl leading-none text-[#a00000]">
-                                    {{ $certificate['title'] }}
-                                </h3>
-                                <p class="mt-2 text-[10px] uppercase tracking-[0.25em] text-gray-500">
-                                    {{ $certificate['issuer'] }}
-                                </p>
+                                <div class="flip-face flip-back">
+                                    <h3 class="handwriting text-2xl leading-none text-[#a00000]">{{ $certificate->title }}</h3>
+                                    <p class="text-sm leading-relaxed text-[#111]">{{ $certificate->description ?: 'Deskripsi lengkap belum diisi.' }}</p>
+                                    @if ($certificate->credential_url)
+                                        <a href="{{ $certificate->credential_url }}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-[#a00000]">View credential</a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>

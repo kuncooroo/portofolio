@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('category');
-            $table->string('image');
-            $table->date('issued_at');
+            $table->string('issuer')->nullable();
+            $table->string('year', 8)->nullable();
+            $table->string('image')->nullable();
             $table->text('description')->nullable();
             $table->string('credential_url')->nullable();
+            $table->unsignedInteger('sort_order')->default(0);
+            $table->boolean('is_visible')->default(true);
             $table->timestamps();
         });
     }

@@ -1,14 +1,1 @@
-import './bootstrap';
-import { createIcons, icons } from "lucide";
-
-createIcons({ icons });
-
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
-AOS.init({
-    duration: 800,
-    once: true,
-    offset: 100,
-    easing: 'ease-in-out',
-});
+// The public page is HTML and CSS. Alpine, loaded from the layout, handles the small interactive bits.

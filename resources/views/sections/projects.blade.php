@@ -101,74 +101,35 @@
                 </h2>
             </div>
         </div>
-        @php
-            $experiences = [
-                [
-                    'year' => '2025',
-                    'title' => 'Wellnessplate',
-                    'subtitle' => 'PHP . MySQL',
-                    'image' => 'projects/wellnessplate.png',
-                ],
-                [
-                    'year' => '2025',
-                    'title' => 'Warung Soto Vokasi',
-                    'subtitle' => 'Laravel . MySQL',
-                    'image' => 'projects/Warung Soto Vokasi.png',
-                ],
-                [
-                    'year' => '2025',
-                    'title' => 'Buah AI',
-                    'subtitle' => 'Laravel . Flask . MySQL',
-                    'image' => 'projects/Buah AI.png',
-                ],
-                [
-                    'year' => '2025',
-                    'title' => 'KaloriQ',
-                    'subtitle' => 'Flutter . Supabase',
-                    'image' => 'projects/KaloriQ.png',
-                ],
-                [
-                    'year' => '2025',
-                    'title' => 'SmartCane',
-                    'subtitle' => 'Laravel . Flask . C++ . YOLO . MySQL',
-                    'image' => 'projects/Smart Cane.png',
-                ],
-                [
-                    'year' => '2026',
-                    'title' => 'SmartCoop',
-                    'subtitle' => 'Laravel . Flask . C++ . YOLO . MySQL',
-                    'image' => 'projects/SmartCoop.png',
-                ],
-                [
-                    'year' => '2026',
-                    'title' => 'Cek Halal',
-                    'subtitle' => 'Laravel . MySQL',
-                    'image' => 'projects/Cek Halal.png',
-                ],
-            ];
-        @endphp
-
         <div class="relative">
             <div class="relative flex flex-wrap justify-center gap-12">
-                @foreach ($experiences as $experience)
+                @foreach ($projects as $project)
                     <div class="relative flex flex-col items-center group" data-aos="zoom-in">
-                        <div class="mt-10 w-64 transition duration-500 hover:-translate-y-3">
-                            <div class="relative overflow-hidden rounded-2xl shadow-lg">
-                                <div class="absolute left-3 top-3 z-10 rounded-full bg-[#a00000] px-3 py-1 text-sm font-semibold text-white">
-                                    {{ $experience['year'] }}
+                        <div class="flip-card mt-10 w-64">
+                            <div class="flip-inner">
+                                <div class="flip-face">
+                                    <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                                        <div class="absolute left-3 top-3 z-10 rounded-full bg-[#a00000] px-3 py-1 text-sm font-semibold text-white">
+                                            {{ $project->year }}
+                                        </div>
+                                        @if ($project->imageUrl())
+                                            <img src="{{ $project->imageUrl() }}" alt="{{ $project->title }}" class="h-44 w-full object-cover" loading="lazy" decoding="async">
+                                        @else
+                                            <div class="flex h-44 w-full items-center justify-center bg-gray-100 text-sm text-gray-400">No image</div>
+                                        @endif
+                                    </div>
+                                    <div class="mt-5 text-center">
+                                        <h3 class="handwriting text-4xl text-[#a00000]">{{ $project->title }}</h3>
+                                        <p class="mt-2 text-xs uppercase tracking-[0.25em] text-gray-500">{{ $project->subtitle }}</p>
+                                    </div>
                                 </div>
-                                <img src="{{ asset($experience['image']) }}" 
-                                     alt="{{ $experience['title'] }}"
-                                     class="h-44 w-full object-cover transition duration-500 group-hover:scale-110">
-                            </div>
-
-                            <div class="mt-5 text-center">
-                                <h3 class="handwriting text-4xl text-[#a00000]">
-                                    {{ $experience['title'] }}
-                                </h3>
-                                <p class="mt-2 text-xs uppercase tracking-[0.25em] text-gray-500">
-                                    {{ $experience['subtitle'] }}
-                                </p>
+                                <div class="flip-face flip-back">
+                                    <h3 class="handwriting text-3xl leading-none text-[#a00000]">{{ $project->title }}</h3>
+                                    <p class="text-sm leading-relaxed text-[#111]">{{ $project->description ?: 'Deskripsi lengkap belum diisi.' }}</p>
+                                    @if ($project->url)
+                                        <a href="{{ $project->url }}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-[#a00000]">Open project</a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>

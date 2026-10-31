@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
   background: #fafafa;
   color: #111111;
 }
@@ -121,6 +121,259 @@ body {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+.hero-stage {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  overflow: visible;
+  padding: 6.25rem max(1.75rem, 4.5vw) 1.5rem  max(1.75rem, 4vw);
+  background: transparent;
+}
+
+.hero-doodles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-doodle {
+  position: absolute;
+  color: #d0d0d0;
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hero-doodle-a {
+  top: 18%;
+  left: 6%;
+  font-size: 3.2rem;
+  transform: rotate(-8deg);
+}
+
+.hero-doodle-b {
+  right: 7%;
+  bottom: 16%;
+  max-width: 12rem;
+  font-size: 2.4rem;
+  transform: rotate(6deg);
+}
+
+.hero-doodle-c {
+  top: 22%;
+  right: 10%;
+  font-size: 2.8rem;
+  transform: rotate(10deg);
+}
+
+.hero-sheet {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) auto minmax(12rem, 1fr);
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.hero-col-left {
+  transform: rotate(-3.5deg);
+}
+
+.hero-col-right {
+  max-width: 16rem;
+  justify-self: start;
+  transform: rotate(4deg);
+}
+
+.hero-col h1,
+.hero-kicker,
+.hero-lead,
+.hero-note,
+.hero-roles,
+.hero-sign {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+}
+
+.hero-col h1 {
+  margin: 0.1rem 0 0.35rem;
+  max-width: 16rem;
+  font-size: clamp(2.4rem, 3vw, 3.3rem);
+  letter-spacing: 0;
+  line-height: 0.9;
+  transform: rotate(-2deg);
+}
+
+.hero-kicker {
+  margin: 0;
+  color: #a00000;
+  font-size: 1.7rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.hero-lead {
+  margin: 0;
+  max-width: 17rem;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.15;
+  transform: rotate(1.5deg);
+}
+
+.hero-sign {
+  display: inline-block;
+  margin: 0.6rem 0 0;
+  color: #a00000;
+  font-size: 2.6rem;
+  line-height: 1;
+  transform: rotate(-6deg);
+}
+
+.hero-portrait {
+  height: min(84vh, 820px);
+  width: auto;
+  max-width: min(42vw, 560px);
+  object-fit: contain;
+  object-position: center;
+  user-select: none;
+}
+
+.hero-roles {
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-roles li {
+  font-size: 1.7rem;
+  line-height: 0.95;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.hero-roles li:nth-child(1) {
+  transform: rotate(-4deg);
+}
+
+.hero-roles li:nth-child(2) {
+  margin-left: 1.1rem;
+  transform: rotate(3deg);
+}
+
+.hero-roles li:nth-child(3) {
+  margin-left: 0.2rem;
+  transform: rotate(-2deg);
+}
+
+.hero-note {
+  margin: 0.7rem 0 0;
+  font-size: 1.55rem;
+  line-height: 1;
+  transform: rotate(2deg);
+}
+
+.hero-meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+}
+
+.hero-meta a:hover {
+  color: #a00000;
+}
+
+@media (max-width: 1023px) {
+  .hero-stage {
+    min-height: auto;
+    padding: 1.25rem 1rem 6.5rem;
+  }
+
+  .hero-doodles {
+    display: none;
+  }
+
+  .hero-sheet {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .hero-portrait {
+    order: -1;
+    height: auto;
+    max-height: 58vh;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-col-left,
+  .hero-col-right,
+  .hero-col h1,
+  .hero-lead,
+  .hero-roles li,
+  .hero-note,
+  .hero-sign {
+    transform: none;
+  }
+
+  .hero-col-right {
+    max-width: none;
+  }
+}
+
+.site-nav a.is-active {
+  background: #fff;
+  color: #111;
+}
+
+.site-nav-mobile a.is-active {
+  color: #a00000;
+}
+
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .65s cubic-bezier(.4, .2, .2, 1);
+}
+
+.flip-card:hover .flip-inner,
+.flip-card:focus-within .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  overflow: auto;
+  padding: 1.1rem;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .12);
+  text-align: center;
+  transform: rotateY(180deg);
 }
 
 @keyframes fadeIn {

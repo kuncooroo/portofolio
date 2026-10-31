@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('site_title');
-            $table->string('logo')->nullable();
-            $table->string('owner_name');
-            $table->string('email')->nullable();
-            $table->string('github')->nullable();
-            $table->string('linkedin')->nullable();
-            $table->string('instagram')->nullable();
-            $table->text('footer_description')->nullable();
+            $table->string('title');
+            $table->string('subtitle')->nullable();
+            $table->string('year', 8);
+            $table->string('image')->nullable();
+            $table->string('url')->nullable();
+            $table->unsignedInteger('sort_order')->default(0);
+            $table->boolean('is_visible')->default(true);
             $table->timestamps();
         });
     }

@@ -115,36 +115,20 @@
         </div>
 
         @php
-            $skills = [
-                ['name' => 'Laravel', 'icon' => 'devicon-laravel-plain', 'category' => 'web'],
-                ['name' => 'PHP', 'icon' => 'devicon-php-plain', 'category' => 'web'],
-                ['name' => 'MySQL', 'icon' => 'devicon-mysql-plain', 'category' => 'web'],
-                ['name' => 'Supabase', 'icon' => 'devicon-supabase-plain', 'category' => 'web'],
-                ['name' => 'HTML5', 'icon' => 'devicon-html5-plain', 'category' => 'web'],
-                ['name' => 'CSS3', 'icon' => 'devicon-css3-plain', 'category' => 'web'],
-                ['name' => 'JavaScript', 'icon' => 'devicon-javascript-plain', 'category' => 'web'],
-                ['name' => 'Tailwind CSS', 'icon' => 'devicon-tailwindcss-original', 'category' => 'web'],
-                ['name' => 'Bootstrap', 'icon' => 'devicon-bootstrap-plain', 'category' => 'web'],
-                ['name' => 'React', 'icon' => 'devicon-react-original', 'category' => 'web'],
-                ['name' => 'Python', 'icon' => 'devicon-python-plain', 'category' => 'ai'],
-                ['name' => 'Flask', 'icon' => 'devicon-flask-original', 'category' => 'ai'],
-                ['name' => 'TensorFlow', 'icon' => 'devicon-tensorflow-original', 'category' => 'ai'],
-                ['name' => 'OpenCV', 'icon' => 'devicon-opencv-plain', 'category' => 'ai'],
-                ['name' => 'Arduino', 'icon' => 'devicon-arduino-plain', 'category' => 'iot'],
-                ['name' => 'C++', 'icon' => 'devicon-cplusplus-plain', 'category' => 'iot'],
-                ['name' => 'Flutter', 'icon' => 'devicon-flutter-plain', 'category' => 'mobile'],
-                ['name' => 'Dart', 'icon' => 'devicon-dart-plain', 'category' => 'mobile'],
-                ['name' => 'Android', 'icon' => 'devicon-android-plain', 'category' => 'mobile'],
-                ['name' => 'Git', 'icon' => 'devicon-git-plain', 'category' => 'tools'],
-                ['name' => 'GitHub', 'icon' => 'devicon-github-original', 'category' => 'tools'],
-                ['name' => 'VS Code', 'icon' => 'devicon-vscode-plain', 'category' => 'tools'],
-                ['name' => 'Figma', 'icon' => 'devicon-figma-plain', 'category' => 'tools'],
-                ['name' => 'Canva', 'icon' => 'devicon-canva-original', 'category' => 'tools'],
-                ['name' => 'Docker', 'icon' => 'devicon-docker-plain', 'category' => 'tools'],
-                ['name' => 'Arduino IDE', 'icon' => 'devicon-arduino-plain', 'category' => 'tools'],
-                ['name' => 'Postman', 'icon' => 'devicon-postman-plain', 'category' => 'tools'],
-                ['name' => 'EX: 370', 'icon' => 'gaming.png', 'category' => 'gaming'],
+            $preferred = ['web', 'ai', 'iot', 'mobile', 'tools', 'gaming'];
+            $labels = [
+                'web' => 'Web',
+                'ai' => 'AI',
+                'iot' => 'IoT',
+                'mobile' => 'Mobile',
+                'tools' => 'Tools',
+                'gaming' => 'Gaming',
             ];
+            $categories = $skills->pluck('category')->unique()->sortBy(function ($category) use ($preferred) {
+                $index = array_search($category, $preferred, true);
+
+                return $index === false ? 100 : $index;
+            })->values();
         @endphp
 
         <div class="flex justify-center mb-10">
@@ -153,52 +137,35 @@
                     class="px-6 py-3 rounded-full font-semibold transition">
                     All
                 </button>
-                <button @click="active='web'" :class="active == 'web' ? 'bg-[#a00000] text-white' : 'text-gray-600'"
-                    class="px-6 py-3 rounded-full font-semibold transition">
-                    Web
-                </button>
-                <button @click="active='ai'" :class="active == 'ai' ? 'bg-[#a00000] text-white' : 'text-gray-600'"
-                    class="px-6 py-3 rounded-full font-semibold transition">
-                    AI
-                </button>
-                <button @click="active='iot'" :class="active == 'iot' ? 'bg-[#a00000] text-white' : 'text-gray-600'"
-                    class="px-6 py-3 rounded-full font-semibold transition">
-                    IoT
-                </button>
-                <button @click="active='mobile'"
-                    :class="active == 'mobile' ? 'bg-[#a00000] text-white' : 'text-gray-600'"
-                    class="px-6 py-3 rounded-full font-semibold transition">
-                    Mobile
-                </button>
-                <button @click="active='tools'" :class="active == 'tools' ? 'bg-[#a00000] text-white' : 'text-gray-600'"
-                    class="px-6 py-3 rounded-full font-semibold transition">
-                    Tools
-                </button>
-                <button @click="active='gaming'"
-                    :class="active == 'gaming' ? 'bg-[#a00000] text-white' : 'text-gray-600'"
-                    class="px-6 py-3 rounded-full font-semibold transition">
-                    Gaming
-                </button>
+                @foreach ($categories as $category)
+                    <button type="button" @click='active = @json($category)'
+                        :class='active == @json($category) ? "bg-[#a00000] text-white" : "text-gray-600"'
+                        class="px-6 py-3 rounded-full font-semibold transition">
+                        {{ $labels[$category] ?? ucfirst($category) }}
+                    </button>
+                @endforeach
             </div>
         </div>
 
         <div class="flex flex-wrap justify-center gap-10 min-h-42.5">
             @foreach ($skills as $skill)
-                <div x-show="active == 'all' || active == '{{ $skill['category'] }}'"
+                <div x-show='active == "all" || active == @json($skill->category)'
                     x-transition.opacity.scale.duration.300ms class="group flex flex-col items-center">
                     <div
                         class="w-30 h-30 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center transition-all duration-500 hover:-translate-y-3 hover:scale-110 hover:border-[#a00000] hover:shadow-xl">
-                        @if (str_contains($skill['icon'], '/') || str_contains($skill['icon'], '.'))
-                            <img src="{{ asset($skill['icon']) }}" alt="{{ $skill['name'] }}"
-                                class="w-20 h-20 object-contain grayscale group-hover:grayscale-0 transition-all duration-500">
-                        @else
+                        @if ($skill->usesImage() && $skill->iconUrl())
+                            <img src="{{ $skill->iconUrl() }}" alt="{{ $skill->name }}"
+                                class="w-20 h-20 object-contain grayscale group-hover:grayscale-0 transition-all duration-500" loading="lazy" decoding="async">
+                        @elseif ($skill->icon)
                             <i
-                                class="{{ $skill['icon'] }} text-7xl text-gray-700 group-hover:text-[#a00000] transition-all duration-500"></i>
+                                class="{{ $skill->icon }} text-7xl text-gray-700 group-hover:text-[#a00000] transition-all duration-500"></i>
+                        @else
+                            <span class="text-3xl font-bold text-gray-700">{{ \Illuminate\Support\Str::of($skill->name)->substr(0, 1) }}</span>
                         @endif
                     </div>
                     <p
                         class="mt-3 h-5 text-sm font-semibold text-[#a00000] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                        {{ $skill['name'] }}
+                        {{ $skill->name }}
                     </p>
                 </div>
             @endforeach

@@ -112,44 +112,17 @@
         </div>
 
         @php
-            $experiences = [
-                [
-                    'year' => '2025',
-                    'title' => 'PROVOKS UB',
-                    'subtitle' => 'Staff Sekertaris',
-                    'image' => 'experience/Provoks.jpg',
-                ],
-                [
-                    'year' => '2024',
-                    'title' => 'KOMAKU',
-                    'subtitle' => 'Staff Infokom',
-                    'image' => 'experience/KOMAKU.jpeg',
-                ],
-                [
-                    'year' => '2024',
-                    'title' => 'KMNU',
-                    'subtitle' => 'Staff Media & Relation',
-                    'image' => 'experience/KMNU.jpeg',
-                ],
-                [
-                    'year' => '2025',
-                    'title' => 'Olivia X UB',
-                    'subtitle' => 'Participant',
-                    'image' => 'experience/Olivia X UB.jpg',
-                ],
-                [
-                    'year' => '2026',
-                    'title' => 'Olivia XI Unesa',
-                    'subtitle' => 'Participant',
-                    'image' => 'experience/Olivia XI Unesa.jpeg',
-                ],
-                [
-                    'year' => '2026',
-                    'title' => 'PKM',
-                    'subtitle' => 'Participant',
-                    'image' => 'experience/PKM.jpeg',
-                ],
+            $positions = [
+                'lg:col-start-1 lg:mt-0',
+                'lg:col-start-4 lg:mt-6',
+                'lg:col-start-2 lg:col-span-2 lg:flex lg:justify-center lg:-mt-16',
+                'lg:col-start-2 lg:-mt-6',
+                'lg:col-start-3 lg:mt-2',
+                'lg:col-start-2 lg:col-span-2 lg:flex lg:justify-center lg:-mt-8',
+                'lg:col-start-1 lg:-mt-10',
+                'lg:col-start-4 lg:-mt-4',
             ];
+            $rotations = ['-rotate-2', 'rotate-2', '-rotate-1', 'rotate-1', '-rotate-1', 'rotate-1', 'rotate-2', '-rotate-2'];
         @endphp
 
         <div class="relative">
@@ -158,29 +131,10 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 relative z-10">
-                @for ($i = 0; $i < count($experiences); $i++)
+                @foreach ($experiences as $i => $experience)
                     @php
-                        $position = match ($i) {
-                            0 => 'lg:col-start-1 lg:mt-0',
-                            1 => 'lg:col-start-4 lg:mt-6',
-                            2 => 'lg:col-start-2 lg:col-span-2 lg:flex lg:justify-center lg:-mt-16',
-                            3 => 'lg:col-start-2 lg:-mt-6',
-                            4 => 'lg:col-start-3 lg:mt-2',
-                            5 => 'lg:col-start-2 lg:col-span-2 lg:flex lg:justify-center lg:-mt-8',
-                            6 => 'lg:col-start-1 lg:-mt-10',
-                            7 => 'lg:col-start-4 lg:-mt-4',
-                        };
-
-                        $rotate = match ($i) {
-                            0 => '-rotate-2',
-                            1 => 'rotate-2',
-                            2 => '-rotate-1',
-                            3 => 'rotate-1',
-                            4 => '-rotate-1',
-                            5 => 'rotate-1',
-                            6 => 'rotate-2',
-                            7 => '-rotate-2',
-                        };
+                        $position = $positions[$i % count($positions)];
+                        $rotate = $rotations[$i % count($rotations)];
                     @endphp
 
                     <div class="{{ $position }} flex justify-center" data-aos="zoom-in">
@@ -190,29 +144,37 @@
                                 <div class="w-5 h-5 rounded-full bg-[#a00000] border-4 border-white shadow-lg"></div>
                             </div>
 
-                            {{-- Image --}}
-                            <div class="relative overflow-hidden rounded-2xl shadow-xl">
-                                <img src="{{ asset($experiences[$i]['image']) }}" alt="{{ $experiences[$i]['title'] }}"
-                                    class="h-40 w-full object-cover transition duration-500 group-hover:scale-110">
-                                {{-- Year --}}
-                                <div
-                                    class="absolute top-3 left-3 bg-[#a00000] text-white px-4 py-1 rounded-full text-xs font-bold">
-                                    {{ $experiences[$i]['year'] }}
+                            <div class="flip-card">
+                                <div class="flip-inner">
+                                    <div class="flip-face">
+                                        <div class="relative overflow-hidden rounded-2xl shadow-xl">
+                                            @if ($experience->imageUrl())
+                                                <img src="{{ $experience->imageUrl() }}" alt="{{ $experience->title }}" class="h-40 w-full object-cover" loading="lazy" decoding="async">
+                                            @else
+                                                <div class="flex h-40 w-full items-center justify-center bg-gray-100 text-sm text-gray-400">No image</div>
+                                            @endif
+                                            <div class="absolute top-3 left-3 bg-[#a00000] text-white px-4 py-1 rounded-full text-xs font-bold">
+                                                {{ $experience->year }}
+                                            </div>
+                                        </div>
+                                        <div class="text-center mt-5">
+                                            <h3 class="handwriting text-4xl text-[#a00000] leading-none">
+                                                {{ $experience->title }}
+                                            </h3>
+                                            <p class="uppercase tracking-[0.25em] text-xs text-gray-500 mt-3">
+                                                {{ $experience->subtitle }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flip-face flip-back">
+                                        <h3 class="handwriting text-3xl leading-none text-[#a00000]">{{ $experience->title }}</h3>
+                                        <p class="text-sm leading-relaxed text-[#111]">{{ $experience->description ?: 'Deskripsi lengkap belum diisi.' }}</p>
+                                    </div>
                                 </div>
-                            </div>
-
-                            {{-- Text --}}
-                            <div class="text-center mt-5">
-                                <h3 class="handwriting text-4xl text-[#a00000] leading-none">
-                                    {{ $experiences[$i]['title'] }}
-                                </h3>
-                                <p class="uppercase tracking-[0.25em] text-xs text-gray-500 mt-3">
-                                    {{ $experiences[$i]['subtitle'] }}
-                                </p>
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endforeach
             </div>
         </div>
     </div>
