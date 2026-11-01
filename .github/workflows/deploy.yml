@@ -1,0 +1,63 @@
+
+name: Deploy Laravel Portfolio
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: portfolio-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy application
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          command_timeout: 15m
+          script: |
+            set -e
+
+            echo "Starting deployment..."
+
+            cd /var/www/portfolio
+
+            echo "Checking repository..."
+            git status --short --branch
+
+            echo "Fetching latest code..."
+            git fetch origin main
+
+            echo "Updating application..."
+            git pull --ff-only origin main
+
+            echo "Installing PHP dependencies..."
+            composer install \
+              --no-interaction \
+              --prefer-dist \
+              --optimize-autoloader \
+              --no-dev
+
+            echo "Installing frontend dependencies..."
+            npm ci
+
+            echo "Building frontend assets..."
+            npm run build
+
+            echo "Clearing Laravel cache..."
+            php artisan optimize:clear
+
+            echo "Rebuilding Laravel cache..."
+            php artisan optimize
+
+            echo "Deployment completed successfully!"
