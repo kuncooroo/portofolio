@@ -236,13 +236,52 @@ body {
   transform: rotate(-6deg);
 }
 
+.hero-portrait-wrap {
+  position: relative;
+  justify-self: center;
+  width: fit-content;
+  max-width: 100%;
+}
+
 .hero-portrait {
+  display: block;
   height: min(84vh, 820px);
   width: auto;
   max-width: min(42vw, 560px);
   object-fit: contain;
   object-position: center;
   user-select: none;
+}
+
+.hero-cv {
+  position: absolute;
+  z-index: 3;
+  top: 2%;
+  right: -0.4rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.1rem;
+  color: #a00000;
+  text-decoration: none;
+  transform: translate(12%, -18%) rotate(-8deg);
+}
+
+.hero-cv span {
+  border: 2px solid #a00000;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 0.05rem 0.85rem 0.15rem;
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hero-cv-arrow {
+  width: 4.6rem;
+  height: 3.5rem;
+  flex: none;
+  margin-bottom: 0.15rem;
 }
 
 .hero-roles {
@@ -307,12 +346,31 @@ body {
     gap: 1.25rem;
   }
 
-  .hero-portrait {
+  .hero-portrait-wrap {
     order: -1;
+    margin-right: 2.6rem;
+  }
+
+  .hero-portrait {
     height: auto;
     max-height: 58vh;
     max-width: 100%;
     margin: 0 auto;
+  }
+
+  .hero-cv {
+    top: 0.35rem;
+    right: 0.2rem;
+    transform: rotate(-6deg);
+  }
+
+  .hero-cv span {
+    font-size: 1.7rem;
+  }
+
+  .hero-cv-arrow {
+    width: 3.2rem;
+    height: 2.5rem;
   }
 
   .hero-col-left,
@@ -327,6 +385,66 @@ body {
 
   .hero-col-right {
     max-width: none;
+  }
+}
+
+.social-rail {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  z-index: 50;
+  transform: translateY(-50%);
+}
+
+.social-rail-panel {
+  width: 3.5rem;
+  border-radius: 1.5rem 0 0 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-right: 0;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.social-rail-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.social-rail-links a {
+  color: #4b5563;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: color 0.3s;
+}
+
+@media (max-width: 1023px) {
+  .social-rail-links i {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .social-rail {
+    top: auto;
+    bottom: 5.75rem;
+    transform: none;
+  }
+
+  .social-rail-panel {
+    width: 2.7rem;
+    padding: 0.7rem 0;
+  }
+
+  .social-rail-links {
+    gap: 0.85rem;
+  }
+
+  .social-rail-links a {
+    font-size: 1rem;
   }
 }
 

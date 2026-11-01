@@ -1,7 +1,7 @@
 @if ($setting->hasSocialLinks())
-    <div class="fixed right-0 top-1/2 z-50 hidden -translate-y-1/2 lg:block">
-        <div class="w-14 rounded-l-3xl border border-r-0 border-gray-200 bg-white/90 py-6 shadow-lg backdrop-blur-md">
-            <div class="flex flex-col items-center gap-6">
+    <div class="social-rail">
+        <div class="social-rail-panel">
+            <div class="social-rail-links">
                 @if ($setting->github)
                     <a href="{{ $setting->github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
                         class="text-gray-600 transition duration-300 hover:text-black">
