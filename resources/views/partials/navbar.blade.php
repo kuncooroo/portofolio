@@ -1,12 +1,28 @@
-<nav class="site-nav fixed top-6 left-1/2 z-50 hidden -translate-x-1/2 lg:block">
-    <div class="flex items-center gap-1 rounded-full bg-[#111] p-1.5 text-sm font-medium text-white">
-        <a href="#about" data-nav="about" class="is-active rounded-full px-4 py-2 transition hover:bg-white/10">About</a>
-        <a href="#skills" data-nav="skills" class="rounded-full px-4 py-2 transition hover:bg-white/10">Skills</a>
-        <a href="#experience" data-nav="experience" class="rounded-full px-4 py-2 transition hover:bg-white/10">Experience</a>
-        <a href="#projects" data-nav="projects" class="rounded-full px-4 py-2 transition hover:bg-white/10">Projects</a>
-        <a href="#certificates" data-nav="certificates" class="rounded-full px-4 py-2 transition hover:bg-white/10">Certificates</a>
+<nav class="site-nav fixed top-6 left-1/2 z-50 hidden -translate-x-1/2 lg:block" aria-label="Primary">
+    <div class="site-nav-pill">
+        <a href="#about" data-nav="about" class="is-active">
+            <i class="fa-regular fa-user" aria-hidden="true"></i>
+            <span>About</span>
+        </a>
+        <a href="#skills" data-nav="skills">
+            <i class="fa-solid fa-code" aria-hidden="true"></i>
+            <span>Skills</span>
+        </a>
+        <a href="#experience" data-nav="experience">
+            <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+            <span>Experience</span>
+        </a>
+        <a href="#projects" data-nav="projects">
+            <i class="fa-regular fa-folder-open" aria-hidden="true"></i>
+            <span>Projects</span>
+        </a>
+        <a href="#certificates" data-nav="certificates">
+            <i class="fa-regular fa-id-card" aria-hidden="true"></i>
+            <span>Certificates</span>
+        </a>
     </div>
 </nav>
+
 <div class="site-nav-mobile fixed inset-x-0 bottom-4 z-[999] flex justify-center lg:hidden">
     <div class="flex w-[96%] max-w-md items-stretch justify-between rounded-[28px] border border-gray-200 bg-white/90 px-1 py-2 shadow-2xl backdrop-blur-xl">
         <a href="#about" data-nav="about" class="is-active flex flex-1 flex-col items-center gap-1 text-gray-500 transition hover:text-[#a00000]">
@@ -31,8 +47,10 @@
         </a>
     </div>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        const nav = document.querySelector('.site-nav');
         const links = [...document.querySelectorAll('[data-nav]')];
         const ids = ['about', 'skills', 'experience', 'projects', 'certificates'];
         const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
@@ -64,6 +82,10 @@
             const id = currentSection();
             if (id) {
                 setActive(id);
+            }
+
+            if (nav) {
+                nav.classList.toggle('is-compact', window.scrollY > 48);
             }
         };
 
